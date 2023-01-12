@@ -1,0 +1,20 @@
+# Ignore object files
+*.o
+
+# Ignore backup files
+*~
+
+# Ignore text documents
+*.txt
+*.docx
+*.doc
+*.pdf
+
+# Ignore image files
+*.jpg
+*.png
+*.jpeg
+
+# Ignore executable files
+/Exercise1/HelloWorld
+/Exercise2/Exercise2
