@@ -8,7 +8,7 @@ Description:	Printing Hello World
 
 int main () {
 	
-	printf("Hello World!\n");
+	printf("Hello World!\n===\nGood Morning Finland!\n");
 	
 	return 0;
 	
