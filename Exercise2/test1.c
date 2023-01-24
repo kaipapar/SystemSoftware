@@ -2,9 +2,9 @@
  
 int main(void) {
 	char ch,ch1;
-	scanf("%c",&ch);/*input ab here*/
-	scanf(" %c",&ch1);
-	printf("%c %c",ch,ch1);
+	scanf("%5s",&ch);/*input ab here*/
+	scanf(" %5s",&ch1);
+	printf("%5s %5s",ch,ch1);
 	return 0;
 }
  

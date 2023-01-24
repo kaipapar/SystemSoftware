@@ -40,9 +40,38 @@ int main() {
 		{
 			printf("===\nAccording to our calculations the second integer you inputted (%c) is bigger than the first (%c)\n", num2, num1);
 		}
+		
+		int sumOfInt;
+		int differenceOf1st2nd;
+		int differenceOf2nd1st;
+		int productOfInt;
+		int divisionOf1st2nd;
+		int divisionOf2nd1st;
+		
+		sumOfInt = num1 + num2;
+		differenceOf1st2nd = num1 - num2;
+		differenceOf2nd1st = num2 - num1;
+		productOfInt = num1 * num2;
+		if (num1 == 0 || num2 == 0) 
+		{
+			if (num1 == num2) 
+			{
+				printf("===\nBoth numbers are 0, they can't be divided.\n");
+
+			} else if (num1 == 0) 
+			{
+				divisionOf
+				printf("===\n
+			}
+		}else 
+		{
+			divisionOf1st2nd = num1 / num2;
+			divisionOf2nd1st = num2 / num1;
+		}
+		
 	}
 	
 	return 0;
 }
 
-//use an if 
+
