@@ -1,7 +1,8 @@
 /*
 File:			scanf_ex	
 Author:			Karri Korsu
-Description:	read 2 int from user one by one and print them.
+Description:	read 2 int from user one by one and 
+				print them in various vays.
 */
 
 #include <math.h>
@@ -9,7 +10,7 @@ Description:	read 2 int from user one by one and print them.
 
 
 int main() {
-
+	//initializing number variables as type char for error checking
 	char num1Char;
 	char num2Char;
 
@@ -18,7 +19,7 @@ int main() {
 	printf("===\nInput another integer: ");
 	scanf(" %c", &num2Char);
 
-	
+	//error checking whether user inputted characters can be interpreted as integers
 	if (48 > num1Char || num1Char > 57) 
 	{
 		printf("===\n1Please input 2 integers.\n");
@@ -54,7 +55,7 @@ int main() {
 		int productOfInt = num1 * num2;
 		float averageOfInt = (num1*1.0 + num2*1.0) / 2;
 		int powerOfInt = round(pow(num1, num2));
-		//int powerOfInt = (int)(pow(num1, num2) + 1e-9);
+
 		printf("===\nSum of two integers: %d\n",sumOfInt);
 		printf("===\nDifference of the first and second integer: %d\n", differenceOf1st2nd);
 		printf("===\nDifference of the second and first integer: %d\n", differenceOf2nd1st);
