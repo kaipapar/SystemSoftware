@@ -39,15 +39,18 @@ int main() {
 			
 		} else if (num1Char > num2Char) 
 		{
-			printf("===\nAccording to our calculations the first integer you inputted (%c) is bigger than the second (%c)\n", num1Char, num2Char);
+			printf("===\nAccording to our calculations the first integer you inputted (%c)\
+			 is bigger than the second (%c)\n", num1Char, num2Char);
 	
 		} else 
 		{
-			printf("===\nAccording to our calculations the second integer you inputted (%c) is bigger than the first (%c)\n", num2Char, num1Char);
+			printf("===\nAccording to our calculations the second integer you inputted (%c)\
+			 is bigger than the first (%c)\n", num2Char, num1Char);
 		}
 		
 		// converting inputted char numbers to type int for calculations
-		// to achieve the integer value of the char we must subtract the ascii value of '0' from the ascii value of the inputted number.
+		// to achieve the integer value of the char we must subtract 
+		// the ascii value of '0' from the ascii value of the inputted number.
 		int num1 = num1Char - '0';
 		int num2 = num2Char - '0';
 		
@@ -76,10 +79,14 @@ int main() {
 
 			} else if (num1 == 0) 
 			{
-				printf("===\nThe first integer is 0, therefore in divisions between the two integers \nthe first one cannot be the denominator and when it is the numerator \nthe division equals to 0.\n");
+				printf("===\nThe first integer is 0, therefore in divisions between the two integers  \
+				\nthe first one cannot be the denominator and when it is the numerator \
+				\nthe division equals to 0.\n");
 			} else if (num2 == 0) 
 			{
-				printf("===\nThe second integer is 0, therefore in divisions between the two integers \nthe second one cannot be the denominator and when it is the numerator \nthe division equals to 0.\n");			
+				printf("===\nThe second integer is 0, therefore in divisions between the two integers \
+				 \nthe second one cannot be the denominator and when it is the numerator\
+				  \nthe division equals to 0.\n");			
 			}
 		}else 
 		{
