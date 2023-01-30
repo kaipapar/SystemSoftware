@@ -15,16 +15,13 @@ int main () {
 
 	//Intializes random number generator
 	srand((unsigned) time(&t));
-	//int rand_num = (rand() % 100) - 100;	//is it -100 to 0 or -100 to -1?
+	
 	int rand_num;
 	
-	//Prints a negative number in
-	//range (0 to 100) - 100 so range(-100 to 0)
+	//Prints an integer in range (0 to 100) and assigns it to variable rand_num
 	
-	printf("Random number between -100 and 0: %d\n" \
-	//, rand_num = (rand() % 100) - 100);
-	, rand_num = -28);
-	//, rand_num = -1;
+	printf("Random number between 0 and 100: %d\n" \
+			, rand_num = rand() % 100);
 	
 	
 	if (rand_num == 0) 
@@ -48,12 +45,13 @@ int main () {
 	} else 
 	{
 		printf("===\nThe random number is not divisible by 4 and 7\n");
+		
 	}
 
 
 
 
-	int int_array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, -28};
+	int int_array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	int i;
 	int n = 0;
 	int num_check = 0;
@@ -72,8 +70,6 @@ int main () {
 		if (n == 10)
 		{
 			printf("===\n");
-			printf("%d",rand_num);
-			break;
 			
 		}
 	}
@@ -83,16 +79,14 @@ int main () {
 		printf("%d\n", int_array[i]);
 		n++;
 		
-		if (n == 20)
-		{	
-			printf("===\n");
-			break;
-		
-		}
 	}
 	if (num_check) 
 	{
 		printf("===\nThe random number is in the array!\n");
+		
+	} else
+	{
+		printf("===\nThe random number is not in the array!\n");
 	}
 	
 
