@@ -9,6 +9,7 @@ Description:	Answers to ex3
 #include <limits.h>
 #include <stdlib.h>
 
+int randNumGen();
 void sumOfNums();
 void sumOfEvens();
 void operRandom();
@@ -18,30 +19,30 @@ void fiboCheck();
 int main() 
 {
 	
-	
-	sumOfNums(10);
+	sumOfNums(100);
 	printf("\n===\n");
-	sumOfEvens(10);
+	sumOfEvens(100);
 	printf("\n===\n");
-	operRandom();
+	/*operRandom();
 	printf("\n===\n");
 	collatzSeq();
 	printf("\n===\n");
 	fiboCheck();
-	printf("\n===\n");
+	printf("\n===\n");*/
 	return 0;
 }
 
 /*	Task 3 a)	*/
 void sumOfNums(int n) 
 {
-	int num = 0;
-	for (int i = 1; i <= n; i++)
+	int finalSum = 0;
+	for (int i = 0; i <= n; i++)
 	{
-		num += i;
-		printf("%d\n",num);
+		finalSum += i;
+		//printf("%d\n",finalSum);
 	}
-	printf("%d\n",num);
+	
+	printf("The sum of all numbers from 0 to %d: %d\n",n, finalSum);
 }
 
 /*	Task 3 b)	*/
@@ -53,21 +54,17 @@ void sumOfEvens(int n)
 		if (i % 2 == 0) 
 		{
 			num += i;
-			printf("%d\n",num);
+			printf("line57%d\n",num);
 		}
+		printf("line59%d\n",num)
 	}
 	printf("%d\n",num);
 }
 
 /*	Task 3 c)*/
 void operRandom()
-{
-	time_t t = 0;
-	
-	srand((unsigned) time(&t));
-	
-	int randNum = rand() % (20 - 2 + 1) + 2;
-	//int randNum = 20;
+{	
+	int randNum = randNumGen(2,20);
 	// Assigns random integer to randNum
 	printf("===\nRandom number between 2 and 20: %d\n" \
 			, randNum);
@@ -89,14 +86,12 @@ void operRandom()
 	printf("Integer upper limit reached: %d", INT_MAX);
 }
 
+
+
 /*	Task 4 b)*/
 void collatzSeq() 
 {
-	time_t t = 0;
-	
-	srand((unsigned) time(&t));
-	
-	int randNum = rand() % 100;
+	int randNum = randNumGen(0,100);
 	
 	if (randNum == 0)
 	{
@@ -106,7 +101,7 @@ void collatzSeq()
 	else
 	{
 		int collatz[300] = {0};
-		//collatz[0] = randNum;
+		collatz[0] = randNum;
 		collatz[0] = 54;
 		
 		for (int i = 0; collatz[i]>0; i++)
@@ -133,15 +128,13 @@ void collatzSeq()
 	}
 }
 
-/*	Task 5b		*/
 
+
+/*	Task 5b		*/
 void fiboCheck()
 {
-	time_t t = 0;
-	
-	srand((unsigned) time(&t));
-	
-	int randNum = rand() % 100000;
+	int randNum = randNumGen(0, 100000);
+	//int randNum = 17711;
 	int current = 1;
 	int previous = 0;
 	int prevprevious = 0;
@@ -164,15 +157,27 @@ void fiboCheck()
 			
 			
 		}
-		if (current == randNum)
-			{
+		if (previous == randNum)
+		{
 				printf("\n is in the fibonacci sequence.");
-			}
-			else
-			{
+		}
+		else
+		{
 				printf("\n Line 171 is not in the fibonacci sequence.");
-			}
+		}
 	}
+}
+
+/*	Random number generator		*/
+int randNumGen(int lower, int upper)
+{
+	time_t t = 0;
+	
+	srand((unsigned) time(&t));
+	
+	int randNum = rand() % (upper - lower + 1) + lower;
+	
+	return randNum;
 }
 
 
