@@ -13,6 +13,7 @@ void sumOfNums();
 void sumOfEvens();
 void operRandom();
 void collatzSeq();
+void fiboCheck();
 
 int main() 
 {
@@ -25,6 +26,8 @@ int main()
 	operRandom();
 	printf("\n===\n");
 	collatzSeq();
+	printf("\n===\n");
+	fiboCheck();
 	printf("\n===\n");
 	return 0;
 }
@@ -128,9 +131,48 @@ void collatzSeq()
 		}
 
 	}
-	
-	
+}
 
+/*	Task 5b		*/
+
+void fiboCheck()
+{
+	time_t t = 0;
+	
+	srand((unsigned) time(&t));
+	
+	int randNum = rand() % 100000;
+	int current = 1;
+	int previous = 0;
+	int prevprevious = 0;
+	
+	printf("The random number: %d", randNum);
+	
+	if (randNum == 0) 
+	{
+		printf("\nline 153 is not in the fibonacci sequence.");
+		
+	}
+	else
+	{
+		while (current <= randNum)
+		{
+			previous = current;
+			current = previous + prevprevious;
+			prevprevious = previous;
+			printf("\n Line 163: %d", current);
+			
+			
+		}
+		if (current == randNum)
+			{
+				printf("\n is in the fibonacci sequence.");
+			}
+			else
+			{
+				printf("\n Line 171 is not in the fibonacci sequence.");
+			}
+	}
 }
 
 
