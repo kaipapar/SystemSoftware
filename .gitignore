@@ -9,7 +9,7 @@
 *.docx
 *.doc
 *.pdf
-*.odt
+
 
 # Ignore image files
 *.jpg
