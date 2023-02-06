@@ -21,25 +21,26 @@ int main()
 	
 	sumOfNums(100);
 	printf("\n===\n");
-	sumOfEvens(100);
+	sumOfEvens(-100);
 	printf("\n===\n");
-	/*operRandom();
+	operRandom();
 	printf("\n===\n");
 	collatzSeq();
 	printf("\n===\n");
 	fiboCheck();
-	printf("\n===\n");*/
+	printf("\n===\n");/**/
 	return 0;
 }
 
 /*	Task 3 a)	*/
 void sumOfNums(int n) 
 {
+	// Sums all numbers together from 0 to function argument n.
 	int finalSum = 0;
+
 	for (int i = 0; i <= n; i++)
 	{
 		finalSum += i;
-		//printf("%d\n",finalSum);
 	}
 	
 	printf("The sum of all numbers from 0 to %d: %d\n",n, finalSum);
@@ -48,42 +49,43 @@ void sumOfNums(int n)
 /*	Task 3 b)	*/
 void sumOfEvens(int n) 
 {
-	int num = 0;
+	//	Sums all even numbers together from 0 to function argument n.
+	int finalSum = 0;
+
 	for (int i = 0; i <= n; i++) 
 	{
 		if (i % 2 == 0) 
 		{
-			num += i;
-			printf("line57%d\n",num);
+			finalSum += i;
 		}
-		printf("line59%d\n",num)
 	}
-	printf("%d\n",num);
+
+	printf("This is the sum of all even numbers from 0 to %d: %d\n", n, finalSum);
 }
 
 /*	Task 3 c)*/
 void operRandom()
 {	
+	//	Multiplies a random number with itself until it reaches the maximun integer
+	//	The computer is able to handle. 
 	int randNum = randNumGen(2,20);
-	// Assigns random integer to randNum
+
 	printf("===\nRandom number between 2 and 20: %d\n" \
 			, randNum);
 			
-	int randNum_multip = randNum;
-	
 	do
 	{
-		randNum_multip *= randNum_multip;
-		if (INT_MIN <= randNum_multip && randNum_multip <= 0)
+		randNum *= randNum;
+		if (randNum <= 0)
 		{
-			//printf("Line 76:%d\n", randNum_multip*randNum_multip);
 			break;
 		}
 		
-		printf("Line 80: %d\n", randNum_multip);
+		printf(" %d\n", randNum);
 	}
-	while (randNum_multip); //INT_MAX
-	printf("Integer upper limit reached: %d", INT_MAX);
+	while (randNum);
+	
+	printf("Integer upper limit %d reached.", INT_MAX);
 }
 
 
@@ -91,8 +93,12 @@ void operRandom()
 /*	Task 4 b)*/
 void collatzSeq() 
 {
+	// Creates a collatz sequence based on a random number
 	int randNum = randNumGen(0,100);
-	
+	int collatz[300] = {0};
+
+	printf("The random number generated: %d\n", randNum);
+
 	if (randNum == 0)
 	{
 		printf("===\n0\n");
@@ -100,13 +106,12 @@ void collatzSeq()
 	} 
 	else
 	{
-		int collatz[300] = {0};
+		//	The first element of the sequence is the random number itself.
 		collatz[0] = randNum;
-		collatz[0] = 54;
-		
+
 		for (int i = 0; collatz[i]>0; i++)
 		{
-			printf("\n%d", collatz[i]);
+			printf("\nCollatz element %d : %d", i, collatz[i]);
 			
 			if (collatz[i] == 1) 
 			{
@@ -133,11 +138,12 @@ void collatzSeq()
 /*	Task 5b		*/
 void fiboCheck()
 {
+	//	Checks whether a random number is in the fibonacci sequence.
 	int randNum = randNumGen(0, 100000);
 	//int randNum = 17711;
-	int current = 1;
+	int next = 1;
+	int current = 0;
 	int previous = 0;
-	int prevprevious = 0;
 	
 	printf("The random number: %d", randNum);
 	
@@ -150,14 +156,16 @@ void fiboCheck()
 	{
 		while (current <= randNum)
 		{
+			//	Definition for fibonacci sequence:
+			//	next_(n+1) = current_(n) + previous_(n-1)
+			current = next;
+			next = current + previous;
 			previous = current;
-			current = previous + prevprevious;
-			prevprevious = previous;
-			printf("\n Line 163: %d", current);
+			printf("\n %d", current);
 			
 			
 		}
-		if (previous == randNum)
+		if (current == randNum)
 		{
 				printf("\n is in the fibonacci sequence.");
 		}
