@@ -1,7 +1,7 @@
 /*
-File:
-Author:
-Description:
+File:			callby.c
+Author:			Karri Korsu
+Description:	Examples for call by value and call by reference.
 */
 
 
