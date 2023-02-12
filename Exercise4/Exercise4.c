@@ -21,6 +21,7 @@ int randNumGen(int num1, int num2);
 void gradeCheck(int exPoints);
 
 /*	Task 5	*/
+char* readUserInput();
 
 /*	Misc	*/
 void printArray(int array[]);
@@ -31,6 +32,7 @@ void printArrayTilZero(int array[]);
 int main()
 {
     //int *intArray = createIntArray();
+	
 
     /*numOfNeg(intArray);
 	sumOfInt(intArray);
@@ -39,6 +41,10 @@ int main()
     //printArray(intArray);
 	randNumGen(0,120);
     gradeCheck(randNumGen(0, 120));
+	
+	char *userInput = readUserInput();
+
+
     return 0;
 }
 

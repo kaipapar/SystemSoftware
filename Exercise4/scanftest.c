@@ -10,15 +10,15 @@ int* createIntArray();
 
 int main()
 {
-	time_t t = 0;
-	
-	srand((unsigned) time(&t));
+    char inte[ARRLEN] = {0};
+    if (scanf("%s", &inte) == 1)
+    {
+        
+           printf("Line 16 %s", inte);
+           
 
-    int upper = 0;
-    int lower = -5;
-	
-	int randNum = rand() % (upper - lower + 1) + lower;
-	printf("%d",randNum);
+    }
+    
    
     return 0;
 }
