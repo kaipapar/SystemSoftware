@@ -18,6 +18,9 @@ void sumOfPosDivThree(int array[]);
 
 /*	Task 4	*/
 int randNumGen(int num1, int num2);
+void gradeCheck(int exPoints);
+
+/*	Task 5	*/
 
 /*	Misc	*/
 void printArray(int array[]);
@@ -27,14 +30,15 @@ void printArrayTilZero(int array[]);
 
 int main()
 {
-    int *intArray = createIntArray();
+    //int *intArray = createIntArray();
 
-    numOfNeg(intArray);
+    /*numOfNeg(intArray);
 	sumOfInt(intArray);
 	sumOfPosDivThree(intArray);
-
+	*/
     //printArray(intArray);
-    
+	randNumGen(0,120);
+    gradeCheck(randNumGen(0, 120));
     return 0;
 }
 
@@ -120,22 +124,75 @@ int randNumGen(int num1, int num2)
 {
 	time_t t = 0;
 	srand((unsigned) time(&t));
+
 	int range = 0;
+	int rangeShift = 0;
 	
 	if (num1 > num2)
-	{
-		range = (num1 - num2 + 1) + num2;
+	{	//if the first number is bigger
+		range = (num1 - num2 + 1);
+		rangeShift = num2;
 	}
-	else if (num2 < num1)
-	{
-		range = (num2 - num1 + 1) + num1;
+	else if (num2 > num1)
+	{	//if the second number is bigger
+		range = (num2 - num1 + 1);
+		rangeShift = num1;
+	}
+	else
+	{	//if the two numbers are the same.
+		range = 1;
+		rangeShift = num1; 
 	}
 	
-	int randNum = rand() % range;
+	int randNum = rand() % range + rangeShift;
 	
 	return randNum;
 }
 
+
+/*	4b returns a grade corresponding to requirements	*/
+void gradeCheck(int exPoints)
+{
+	int grade = 0;
+	if (exPoints >= 0 && exPoints <= 120)
+	{
+		if (exPoints < 60)
+		{
+			grade = 0;
+		}
+		else if (exPoints < 72)
+		{
+			grade = 1;
+		}
+		else if (exPoints < 84)
+		{
+			grade = 2;
+		}
+		else if (exPoints < 96)
+		{
+			grade = 3;
+		}
+		else if (exPoints < 108)
+		{
+			grade = 4;
+		}
+		else 
+		{
+			grade = 5;
+		}
+		printf("This is the grade for %d points: %d\n", exPoints, grade);
+	}
+	else if (exPoints < 0)
+	{
+		printf("You have negative points, sorry.\n");
+	}
+	else
+	{
+		printf("Wow! You have more points than what is possible.\n");
+	}
+}
+
+/*	5b	*/
 
 
 /*	Prints all elements of an integer array	*/

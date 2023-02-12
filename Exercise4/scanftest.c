@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define ARRLEN 100
 void printArray(int array[]);
@@ -9,11 +10,16 @@ int* createIntArray();
 
 int main()
 {
-    int *intArray = createIntArray();
+	time_t t = 0;
+	
+	srand((unsigned) time(&t));
 
-    numOfNeg(intArray);
-    printArray(intArray);
-    
+    int upper = 0;
+    int lower = -5;
+	
+	int randNum = rand() % (upper - lower + 1) + lower;
+	printf("%d",randNum);
+   
     return 0;
 }
 
