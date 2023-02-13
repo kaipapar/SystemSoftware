@@ -12,9 +12,9 @@ Description:	Answers to Tasks 3 - 5
 
 
 int* createIntArray();
-void numOfNeg(int array[]);
-void sumOfInt(int array[]);
-void sumOfPosDivThree(int array[]);
+int numOfNeg(int* array);
+int sumOfInt(int* array);
+int sumOfPosDivThree(int* array);
 
 
 int randNumGen(int num1, int num2);
@@ -23,7 +23,7 @@ void gradeCheck(int exPoints);
 
 char* readUserInput();
 int checkUserInput(char* userInput);
-void primeNumCheck(char* userInput);
+int primeNumCheck(char* userInput);
 
 
 void printArray(int array[]);
@@ -35,20 +35,32 @@ int main()
 {
     // Task 3
 	int *intArray = createIntArray();
-    numOfNeg(intArray);
-	sumOfInt(intArray);
-	sumOfPosDivThree(intArray);
-    //printArray(intArray);
+
+	printf("Number of negative numbers in the array: %d\n", numOfNeg(intArray));
+
+	printf("The sum of integers in the array: %d\n", sumOfInt(intArray));
+	
+	printf("Sum of positive integers which can be divided by three: %d\n", sumOfPosDivThree(intArray));
 
 	// Task 4
-	randNumGen(0,120);
-    gradeCheck(randNumGen(0, 120));
+	int randNum = randNumGen(0,120);
+
+	printf("This is a random number: %d\n", randNum);
+
+    gradeCheck(randNum);
 	
 
 	// Task 5
 	char *userInput = readUserInput();
-	//printf("%s", userInput);
-	primeNumCheck(userInput);
+	printf("%s",userInput);
+	if (checkUserInput(userInput) == 1)
+	{
+		primeNumCheck(userInput);
+	}
+	else
+	{
+		printf("sorry\n");
+	}
 
 
     return 0;
@@ -75,13 +87,12 @@ int* createIntArray()
         }
     }
     printf("You entered 0 or something that isn't an integer!\n");
-
     return array;
 }
 
 
 /*	3a Returns the amount of negative numbers in an array	*/
-void numOfNeg(int array[])
+int numOfNeg(int array[])
 {
     int numberOfNegs = 0;
 	int i = 0;
@@ -94,12 +105,13 @@ void numOfNeg(int array[])
 		}
 		i++;
 	}
-    printf("Number of negative numbers in the array: %d\n", numberOfNegs);
+	return numberOfNegs;
+    
 }
 
 
 /*	3b Returns the sum of all integers in an array	*/
-void sumOfInt(int array[])
+int sumOfInt(int array[])
 {
 	int sumOfIntegers = 0;
 	int i = 0;
@@ -108,13 +120,13 @@ void sumOfInt(int array[])
 		sumOfIntegers += array[i];
 		i++;
 	}
-	printf("The sum of integers in the array: %d\n", sumOfIntegers);
+	return sumOfIntegers;
 }
 
 
 /*	3c Returns the sum of positive integers in an array 
 	which can be divided by three	*/
-void sumOfPosDivThree(int array[])
+int sumOfPosDivThree(int array[])
 {
 	int sumOfPositives = 0;
 	int i = 0;
@@ -126,8 +138,7 @@ void sumOfPosDivThree(int array[])
 		}
 		i++;
 	}
-	printf("Sum of positive integers which can be divided by three: %d\n",
-	 sumOfPositives);
+	return sumOfPositives;
 }
 
 
@@ -210,9 +221,9 @@ void gradeCheck(int exPoints)
 /*	5b Asks for user input and returns that input as char array	*/
 char* readUserInput()
 {
-	printf("Enter an integer: \n");
 	char *array = (char*) malloc(ARRLEN * sizeof(char*));
-	scanf("%s", array);
+	printf("Enter an integer: \n");
+	scanf(" %s", array);
 
 	return array;
 }
@@ -232,17 +243,21 @@ int checkUserInput(char* userInput)
 				flag = 1;
 			}
 			else 
-			{	// if the element isnt a number 
+			{	
+				flag = 0;
+				break;
+				
+				/*// if the element isnt a number 
 				// for elements in userInput from i to end of array.
 				if (userInput[i] == 0)
 				{	// if the element is empty: advance.
 					flag = 1;
 				}
-				else
-				{	// if its something else than space the input is invalid.
+				else if (userInput[i] == 32)
+				{	// if its something else than empty the input is invalid.
 					flag = 0;
 					break;
-				}
+				}*/
 			}
 		}
 	}
@@ -255,7 +270,7 @@ int checkUserInput(char* userInput)
 
 
 /*	5b Checks whether an input is a prime number or not.	*/
-void primeNumCheck(char* userInput)
+/*void primeNumCheck(char* userInput)
 {
 	if (checkUserInput(userInput) == 1)
 	{	// If the type checking function returns true
@@ -302,6 +317,56 @@ void primeNumCheck(char* userInput)
 	{
 		printf("Hmm, something went wrong. Flag : %d", checkUserInput(userInput));
 	}
+}
+*/
+int primeNumCheck(char* userInput)
+{
+	
+    // If the type checking function returns true
+    int checkedInt = atoi(userInput);
+    int possiblePrime = 1;
+    if (checkedInt == 0)
+    {
+        printf("Your number is neither prime nor composite, it is %d\n", checkedInt);
+        possiblePrime = 0;
+    }
+    else if (checkedInt == 1)
+    {
+        printf("Your number (%d) is prime\n", checkedInt);
+        possiblePrime = 1;
+    }
+    else if (checkedInt < 0)
+    {
+        printf("Negative numbers can't be prime: %d\n", checkedInt);
+        possiblePrime = 0;
+    }
+    else
+    {
+        for (int i = 2; i < checkedInt; i++)
+        {	
+            if (checkedInt % i == 0)
+            {	//	if the integer an be divided by something
+                //	other than itself or 1 its not prime.
+                possiblePrime = 0;
+
+                break;
+            }
+            else
+            {
+                possiblePrime = 1;
+            }
+        }
+    }
+    if (possiblePrime == 1)
+    {
+        printf("%d is a prime number", checkedInt);
+    }
+    else
+    {
+        printf("%d is not a prime number", checkedInt);
+    } 
+
+	return possiblePrime;
 }
 
 
