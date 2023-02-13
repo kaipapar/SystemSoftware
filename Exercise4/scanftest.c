@@ -4,21 +4,15 @@
 #include <time.h>
 
 #define ARRLEN 100
-void printArray(int array[]);
+void printArray(char* array);
 void numOfNeg(int array[]);
 int* createIntArray();
 
 int main()
 {
-    char inte[ARRLEN] = {0};
-    if (scanf("%s", &inte) == 1)
-    {
-        
-           printf("Line 16 %s", inte);
-           
-
-    }
-    
+    //int *array = (int*)malloc(ARRLEN * sizeof(int));
+    char *array = (char*) malloc(ARRLEN * sizeof(char*));
+    printArray(array);
    
     return 0;
 }
@@ -27,7 +21,7 @@ int* createIntArray()
 {
     int *array = (int*)malloc(ARRLEN * sizeof(int));
     int i = 0;
-    printf("enter a number:");
+    /*printf("enter a number:");
     while (scanf("%d", &array[i]) == 1)
     {
         printf("Your number is: %d \n", array[i]);
@@ -41,7 +35,8 @@ int* createIntArray()
             i++;
         }
     }
-    printf("That is not a number!\n");
+    printf("That is not a number!\n");*/
+    printf("%s", array);
 
     return array;
 }
@@ -64,7 +59,7 @@ void numOfNeg(int array[])
 }
 
 // function to print array contents
-void printArray(int array[])
+void printArray(char* array)
 {
     for (int i = 0; i < ARRLEN; i++)
     {

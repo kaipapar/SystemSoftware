@@ -22,6 +22,8 @@ void gradeCheck(int exPoints);
 
 /*	Task 5	*/
 char* readUserInput();
+int checkUserInput(char* userInput);
+void primeNumCheck(char* userInput);
 
 /*	Misc	*/
 void printArray(int array[]);
@@ -43,6 +45,8 @@ int main()
     gradeCheck(randNumGen(0, 120));
 	
 	char *userInput = readUserInput();
+	printf("%s", userInput);
+	primeNumCheck(userInput);
 
 
     return 0;
@@ -200,6 +204,95 @@ void gradeCheck(int exPoints)
 
 /*	5b	*/
 
+/*	Asks for user input and returns that input as char array	*/
+char* readUserInput()
+{
+
+	char *array = (char*) malloc(ARRLEN * sizeof(char*));
+	scanf("%s", array);
+
+	return array;
+}
+
+/*	Checks whether userInput char array can be interpreted as integer
+	returns 0 == False, 1 == True	*/
+int checkUserInput(char* userInput)
+{	//	if the first element is a dash or a number
+	if (userInput[0] == 45 || (userInput[0] > 48 && userInput[0] < 57))
+	{	
+		for (int i = 1; i < ARRLEN; i++)
+		{
+			if (userInput[i] > 48 && userInput[i] < 57)
+			{	// if the element is a number advance.
+				continue;
+			}
+			else 
+			{	// if the element isnt a number 
+				for (i = i - 1; i < ARRLEN; i++)
+				{	// for elements in userInput from i to end of array.
+					if (userInput[i] == 0)
+					{	// if the element is <space> == 0 advance.
+						continue;
+					}
+					else
+					{	// if its something else than space the input is invalid.
+						break;
+						return 0;
+					}
+				}
+			}
+			return 1;
+		}
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void primeNumCheck(char* userInput)
+{
+	if (checkUserInput(userInput) == 1)
+	{
+		int checkedInt = atoi(userInput);
+		int possiblePrime = 0;
+		if (checkedInt == 0)
+		{
+			printf("Your number is neither prime nor composite, it is %d\n", checkedInt);
+		}
+		else if (checkedInt == 1)
+		{
+			printf("Your number (%d) is prime\n", checkedInt);
+		}
+		else if (checkedInt < 0)
+		{
+			printf("Negative numbers can't be prime: %d\n", checkedInt);
+		}
+		else
+		{
+			for (int i = 2; i < checkedInt; i++)
+			{
+				if (checkedInt % i == 0)
+				{
+					possiblePrime = 1;
+					break;
+				}
+			}
+			if (possiblePrime == 0)
+			{
+				printf("%d is a prime number.\n", checkedInt);
+			}
+			else
+			{
+				printf("%d is not a prime number.\n", checkedInt);
+			}
+		}
+	}
+	else
+	{
+		printf("Invalid input!\n");
+	}
+}
 
 /*	Prints all elements of an integer array	*/
 void printArray(int array[])
