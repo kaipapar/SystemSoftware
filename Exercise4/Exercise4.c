@@ -1,4 +1,4 @@
-/*
+	/*
 File:			Exercise4.c	
 Author:			Karri Korsu
 Description:	Answers to Tasks 3 - 5
@@ -10,22 +10,22 @@ Description:	Answers to Tasks 3 - 5
 
 #define ARRLEN 100
 
-/*	Task 3	*/
+
 int* createIntArray();
 void numOfNeg(int array[]);
 void sumOfInt(int array[]);
 void sumOfPosDivThree(int array[]);
 
-/*	Task 4	*/
+
 int randNumGen(int num1, int num2);
 void gradeCheck(int exPoints);
 
-/*	Task 5	*/
+
 char* readUserInput();
 int checkUserInput(char* userInput);
 void primeNumCheck(char* userInput);
 
-/*	Misc	*/
+
 void printArray(int array[]);
 void printArrayTilZero(int array[]);
 
@@ -33,19 +33,21 @@ void printArrayTilZero(int array[]);
 
 int main()
 {
-    //int *intArray = createIntArray();
-	
-
-    /*numOfNeg(intArray);
+    // Task 3
+	int *intArray = createIntArray();
+    numOfNeg(intArray);
 	sumOfInt(intArray);
 	sumOfPosDivThree(intArray);
-	*/
     //printArray(intArray);
+
+	// Task 4
 	randNumGen(0,120);
     gradeCheck(randNumGen(0, 120));
 	
+
+	// Task 5
 	char *userInput = readUserInput();
-	printf("%s", userInput);
+	//printf("%s", userInput);
 	primeNumCheck(userInput);
 
 
@@ -92,7 +94,7 @@ void numOfNeg(int array[])
 		}
 		i++;
 	}
-    printf("number of negs: %d\n", numberOfNegs);
+    printf("Number of negative numbers in the array: %d\n", numberOfNegs);
 }
 
 
@@ -124,9 +126,10 @@ void sumOfPosDivThree(int array[])
 		}
 		i++;
 	}
-	printf("Sum of positive integers which can be divided by three: %d",
+	printf("Sum of positive integers which can be divided by three: %d\n",
 	 sumOfPositives);
 }
+
 
 /*	4a Returns a random integer in range which is taken as an argument*/
 /*	Random number generator		*/
@@ -202,58 +205,60 @@ void gradeCheck(int exPoints)
 	}
 }
 
-/*	5b	*/
 
-/*	Asks for user input and returns that input as char array	*/
+
+/*	5b Asks for user input and returns that input as char array	*/
 char* readUserInput()
 {
-
+	printf("Enter an integer: \n");
 	char *array = (char*) malloc(ARRLEN * sizeof(char*));
 	scanf("%s", array);
 
 	return array;
 }
 
-/*	Checks whether userInput char array can be interpreted as integer
+
+/*	5b Checks whether userInput char array can be interpreted as integer
 	returns 0 == False, 1 == True	*/
 int checkUserInput(char* userInput)
 {	//	if the first element is a dash or a number
-	if (userInput[0] == 45 || (userInput[0] > 48 && userInput[0] < 57))
+	int flag = 2;
+	if (userInput[0] == 45 || (userInput[0] >= 48 && userInput[0] <= 57))
 	{	
 		for (int i = 1; i < ARRLEN; i++)
 		{
-			if (userInput[i] > 48 && userInput[i] < 57)
-			{	// if the element is a number advance.
-				continue;
+			if (userInput[i] >= 48 && userInput[i] <= 57)
+			{	// if the element is a number: advance.
+				flag = 1;
 			}
 			else 
 			{	// if the element isnt a number 
-				for (i = i - 1; i < ARRLEN; i++)
-				{	// for elements in userInput from i to end of array.
-					if (userInput[i] == 0)
-					{	// if the element is <space> == 0 advance.
-						continue;
-					}
-					else
-					{	// if its something else than space the input is invalid.
-						break;
-						return 0;
-					}
+				// for elements in userInput from i to end of array.
+				if (userInput[i] == 0)
+				{	// if the element is empty: advance.
+					flag = 1;
+				}
+				else
+				{	// if its something else than space the input is invalid.
+					flag = 0;
+					break;
 				}
 			}
-			return 1;
 		}
 	}
 	else
 	{
-		return 0;
+		flag = 0;
 	}
+	return flag;
 }
 
+
+/*	5b Checks whether an input is a prime number or not.	*/
 void primeNumCheck(char* userInput)
 {
 	if (checkUserInput(userInput) == 1)
-	{
+	{	// If the type checking function returns true
 		int checkedInt = atoi(userInput);
 		int possiblePrime = 0;
 		if (checkedInt == 0)
@@ -271,9 +276,10 @@ void primeNumCheck(char* userInput)
 		else
 		{
 			for (int i = 2; i < checkedInt; i++)
-			{
+			{	
 				if (checkedInt % i == 0)
-				{
+				{	//	if the integer an be divided by something
+					//	other than itself or 1 its not prime.
 					possiblePrime = 1;
 					break;
 				}
@@ -288,11 +294,17 @@ void primeNumCheck(char* userInput)
 			}
 		}
 	}
-	else
+	else if (checkUserInput(userInput) == 0)
 	{
 		printf("Invalid input!\n");
 	}
+	else
+	{
+		printf("Hmm, something went wrong. Flag : %d", checkUserInput(userInput));
+	}
 }
+
+
 
 /*	Prints all elements of an integer array	*/
 void printArray(int array[])
