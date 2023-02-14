@@ -23,7 +23,7 @@ void gradeCheck(int exPoints);
 
 char* readUserInput();
 int checkUserInput(char* userInput);
-void primeNumCheck(char* userInput);
+int primeNumCheck(char* userInput);
 
 
 
@@ -53,6 +53,15 @@ int main()
 	
 
 	primeNumCheck(userInput);
+	if (primeNumCheck(userInput) == 1)
+	{
+		printf("It prime");
+
+	}
+	else
+	{
+		printf("not prime");
+	}
 
 
     return 0;
@@ -235,10 +244,7 @@ int checkUserInput(char* userInput)
 				flag = 1;
 			}
 			else 
-			{	
-				//flag = 0;
-				//break;
-				
+			{					
 				// if the element isnt a number 
 				// for elements in userInput from i to end of array.
 				if (userInput[i] == 0)
@@ -262,12 +268,12 @@ int checkUserInput(char* userInput)
 
 
 /*	5b Checks whether an input is a prime number or not.	*/
-void primeNumCheck(char* userInput)
+int primeNumCheck(char* userInput)
 {
+	int possiblePrime = 0;
 	if (checkUserInput(userInput) == 1)
 	{	// If the type checking function returns true
 		int checkedInt = atoi(userInput);
-		int possiblePrime = 0;
 		if (checkedInt == 0)
 		{
 			printf("Your number is neither prime nor composite, it is %d\n", checkedInt);
@@ -275,6 +281,7 @@ void primeNumCheck(char* userInput)
 		else if (checkedInt == 1)
 		{
 			printf("Your number (%d) is prime\n", checkedInt);
+			possiblePrime = 1;
 		}
 		else if (checkedInt < 0)
 		{
@@ -287,11 +294,15 @@ void primeNumCheck(char* userInput)
 				if (checkedInt % i == 0)
 				{	//	if the integer an be divided by something
 					//	other than itself or 1 its not prime.
-					possiblePrime = 1;
+					possiblePrime = 0;
 					break;
 				}
+				else
+				{
+					possiblePrime = 1;
+				}
 			}
-			if (possiblePrime == 0)
+			if (possiblePrime == 1)
 			{
 				printf("%d is a prime number.\n", checkedInt);
 			}
@@ -299,16 +310,22 @@ void primeNumCheck(char* userInput)
 			{
 				printf("%d is not a prime number.\n", checkedInt);
 			}
+
 		}
 	}
 	else if (checkUserInput(userInput) == 0)
 	{
 		printf("Invalid input!\n");
+
+
 	}
 	else
 	{
 		printf("Hmm, something went wrong. Flag : %d", checkUserInput(userInput));
+
 	}
+	//	Returns 0 for non prime numbers, 
+	return possiblePrime;
 }
 
 
