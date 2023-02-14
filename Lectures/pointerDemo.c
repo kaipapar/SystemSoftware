@@ -32,7 +32,7 @@ int main()
     printf("Memory locations:\n");
     printf("Pointer1: %p \n", pointer1);
     printf("Pointer2: %p\n", pointer2);
-    printf("pointer: %p\n", pointer);     //dont do this
+    //printf("pointer: %p\n", pointer);     //dont do this
 
 
     //  Lets print out what is in the memory locations
