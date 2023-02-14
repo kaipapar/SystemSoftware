@@ -1,4 +1,4 @@
-	/*
+/*
 File:			Exercise4.c	
 Author:			Karri Korsu
 Description:	Answers to Tasks 3 - 5
@@ -30,7 +30,7 @@ int primeNumCheck(char* userInput);
 
 
 int main()
-{/*
+{
     // Task 3
 	int *intArray = createIntArray();
 
@@ -39,7 +39,7 @@ int main()
 	printf("The sum of integers in the array: %d\n", sumOfInt(intArray));
 	
 	printf("Sum of positive integers which can be divided by three: %d\n", sumOfPosDivThree(intArray));
-*/
+
 	// Task 4
 	int randNum = randNumGen(0, 120);
 
