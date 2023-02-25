@@ -43,6 +43,7 @@ int main (int argc, char *argv[])
 		printf("Argument count: %d\n", argc - 1);
 	}
 	
-	
+	// cycle through the argument to check if all characters are numbers 
+	// or use some magic to do it
 	return 0;
 }
