@@ -94,7 +94,7 @@ void operRandom()
 void collatzSeq() 
 {
 	// Creates a collatz sequence based on a random number
-	int randNum = randNumGen(0,100);
+	int randNum = 13;//randNumGen(0,100);
 	int collatz[300] = {0};
 
 	printf("The random number generated: %d\n", randNum);
@@ -139,7 +139,7 @@ void collatzSeq()
 void fiboCheck()
 {
 	//	Checks whether a random number is in the fibonacci sequence.
-	int randNum = randNumGen(0, 100000);
+	int randNum = 11;//randNumGen(0, 100000);
 	//int randNum = 17711;
 	int next = 1;
 	int current = 0;
