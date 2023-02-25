@@ -8,22 +8,21 @@ Description:	Answers to tasks 3 and 4
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX 10000000
-#define MIN 0
+#define ARRAYLENGTH 5
 
+void printArray(char* array, int lenArray);
 
 int main (int argc, char *argv[]) 
 {
+//	3a
 	int i = 0;
 	int flag = 0;
 	int arglen = strlen(argv[1]);
-	
+/*	
 	printf("Arguments: %d\n", argc);
 	printf("Arg 1 : %s\n", argv[1]);
-
-	
-	
-	if (arglen <= 7)
+*/
+	if (arglen <= 7 && argc == 2)
 	{
 		if (argv[1][0] == 45 || (argv[1][0] >= 48 && argv[1][0] <= 57))
 		{	
@@ -56,28 +55,21 @@ int main (int argc, char *argv[])
 		printf("Argument is not valid.\n");
 	}
 	
+	char array[ARRAYLENGTH] = {'a', 'b', 'c', 1, 5};
+	int arrayLen = ARRAYLENGTH;
 	
-	
-	
-	
-	
-	
+	printArray(array, arrayLen);
 	
 
-	int argv1 = atoi(argv[1]);
-	
-	if (argc == 2 && argv1 < MAX && MIN < argv1)
-	{
-		
-		printf("%s", argv[1]);
-	
-	} else
-	{
-		printf("Your arguments are too many, too few or not between 10000000 and 0.\n");
-		printf("Argument count: %d\n", argc - 1);
-	}
-	
-	// cycle through the argument to check if all characters are numbers 
-	// or use some magic to do it
 	return 0;
 }
+
+//	4a
+void printArray(char array[], int lenArray)
+{
+    for (int i = 0; i < lenArray; i++)
+    {
+        printf("array element %d: %c\n", i+1, array[i]);
+    }
+}
+
