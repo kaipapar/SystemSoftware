@@ -41,7 +41,7 @@ int main()
 	printf("Sum of positive integers which can be divided by three: %d\n", sumOfPosDivThree(intArray));
 
 	// Task 4
-	int randNum = randNumGen(0, 120);
+	int randNum = randNumGen(-15, -7);
 
 	printf("This is a random number: %d\n", randNum);
 
@@ -53,15 +53,7 @@ int main()
 	
 
 	primeNumCheck(userInput);
-	if (primeNumCheck(userInput) == 1)
-	{
-		printf("It prime");
 
-	}
-	else
-	{
-		printf("not prime");
-	}
 
 
     return 0;
@@ -289,7 +281,7 @@ int primeNumCheck(char* userInput)
 		}
 		else
 		{
-			for (int i = 2; i < checkedInt; i++)
+			for (int i = 1; i < checkedInt; i++)
 			{	
 				if (checkedInt % i == 0)
 				{	//	if the integer an be divided by something
