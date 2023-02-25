@@ -38,7 +38,7 @@ int main (int argc, char *argv[])
 					break;
 				}
 			}
-		}
+			}
 	}
 	
 	else 
@@ -67,9 +67,20 @@ int main (int argc, char *argv[])
 //	4a
 void printArray(char array[], int lenArray)
 {
+
+// this is problematic. How to have int and char in same array and handle them efficiently. How to check if an element is char or int or etx??
+
     for (int i = 0; i < lenArray; i++)
     {
-        printf("array element %d: %c\n", i+1, array[i]);
+        if (printf("array element %d: %c\n", i+1, array[i]) == 1)
+        {
+        //printf("array element %d: %c\n", i+1, array[i]);
+    	}
+    	else
+    	{
+    		printf("NOTNULL: %c", array[i]);
+    	}
     }
+    
 }
 
