@@ -7,10 +7,12 @@ Description:	Answers to tasks 3 and 4
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
-#define ARRAYLENGTH 5
 
-void printArray(char* array, int lenArray);
+void printIntArray(int array[], int lenArray);
+void randArray(int array[], int lenArray);
+
 
 int main (int argc, char *argv[]) 
 {
@@ -38,7 +40,7 @@ int main (int argc, char *argv[])
 					break;
 				}
 			}
-			}
+		}
 	}
 	
 	else 
@@ -55,31 +57,44 @@ int main (int argc, char *argv[])
 		printf("Argument is not valid.\n");
 	}
 	
-	char array[ARRAYLENGTH] = {'a', 'b', 'c', 1, 5};
-	int arrayLen = ARRAYLENGTH;
+	int array[] = {1, 5, 10, -10};
+	int array1Len = sizeof(array) / sizeof(array[0]);
 	
-	printArray(array, arrayLen);
+	printIntArray(array, array1Len);
 	
+	int randomArray[10] = {0};
+	int array2Len = sizeof(randomArray) / sizeof(randomArray[0]);
+	
+	randArray(randomArray, array2Len);	
+	printIntArray(randomArray, array2Len);
 
 	return 0;
 }
 
 //	4a
-void printArray(char array[], int lenArray)
+void printIntArray(int array[], int lenArray)
 {
-
-// this is problematic. How to have int and char in same array and handle them efficiently. How to check if an element is char or int or etx??
-
     for (int i = 0; i < lenArray; i++)
     {
-        if (sizeof(array[i]) == sizeof(char))
-        {
-        	printf("array element %d: %c\n", i, array[i]);
-    	}
-    	else //if (sizeof(array[i]) == sizeof(int))
-    	{
-    		printf("array element %d: %d\n", i, array[i]);
-    	}
+        printf("array element %d: %d\n", i, array[i]);
     }
 }
+
+//	4b
+void randArray(int array[], int lenArray)
+{
+	time_t t = 0;
+	srand((unsigned) time(&t));
+	
+	// range is from 0 to 1 million
+	int range = 1000000;
+	int rangeShift = 0;	
+	
+	for (int i = 0; i < lenArray; i++)
+	{
+		array[i] = rand() % range + rangeShift;
+	}
+	
+}
+
 

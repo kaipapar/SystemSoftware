@@ -1,19 +1,26 @@
-
-
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void fill_array(int arr[], int length) {
+    int i;
+    srand(time(NULL));  // initialize random number generator with current time
+    for (i = 0; i < length; i++) {
+        arr[i] = rand() % 1000000;  // generate a random number between 0 and 999999
+    }
+}
 
 int main() {
-    // declare and initialize an array with char and int elements
-    char arr[] = {'a', 1, 'b', 2, 'c', 3};
-    int len = sizeof(arr) / sizeof(arr[0]);  // get the length of the array
+    int arr[10] = {0};  // create an empty array of size 10
+    int i;
 
-    for (int i = 0; i < len; i++) {
-        if (arr[i] >= '0' && arr[i] <= '9') {
-            printf("%d ", arr[i] - '0');  // convert char to int and print
-        } else {
-            printf("%c ", arr[i]);  // print character element
-        }
+    fill_array(arr, 10);  // fill the array with random numbers
+
+    printf("The array is: ");
+    for (i = 0; i < 10; i++) {
+        printf("%d ", arr[i]);  // print the array
     }
+    printf("\n");
 
     return 0;
 }
