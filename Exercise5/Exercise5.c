@@ -72,15 +72,14 @@ void printArray(char array[], int lenArray)
 
     for (int i = 0; i < lenArray; i++)
     {
-        if (printf("array element %d: %c\n", i+1, array[i]) == 1)
+        if (sizeof(array[i]) == sizeof(char))
         {
-        //printf("array element %d: %c\n", i+1, array[i]);
+        	printf("array element %d: %c\n", i, array[i]);
     	}
-    	else
+    	else //if (sizeof(array[i]) == sizeof(int))
     	{
-    		printf("NOTNULL: %c", array[i]);
+    		printf("array element %d: %d\n", i, array[i]);
     	}
     }
-    
 }
 
