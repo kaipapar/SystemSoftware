@@ -12,7 +12,7 @@ Description:	Answers to tasks 3 and 4
 
 void printIntArray(int array[], int lenArray);
 void randArray(int array[], int lenArray);
-
+void sortArray(int array[], int lenArray);
 
 int main (int argc, char *argv[]) 
 {
@@ -67,6 +67,10 @@ int main (int argc, char *argv[])
 	
 	randArray(randomArray, array2Len);	
 	printIntArray(randomArray, array2Len);
+	
+	sortArray(randomArray, array2Len);
+	printIntArray(randomArray, array2Len);
+	
 
 	return 0;
 }
@@ -94,6 +98,11 @@ void randArray(int array[], int lenArray)
 	{
 		array[i] = rand() % range + rangeShift;
 	}
+}
+
+//	4c
+void sortArray(int array[], int lenArray)
+{
 	
 }
 
