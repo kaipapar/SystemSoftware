@@ -9,7 +9,11 @@ Description:	Answers to tasks 3 and 4
 #include <string.h>
 #include <time.h>
 #include <limits.h>
+#include <math.h>
 
+#define MAXARRAY 50
+
+void printArmstrong(char range[]);
 
 void printIntArray(int array[], int lenArray);
 void randArray(int array[], int lenArray);
@@ -30,6 +34,10 @@ int main (int argc, char *argv[])
 		if (arglen == 8 && strcmp(argv[1],"10000000") != 0)
 		{				
 			flag = 0;
+		}
+		else if (arglen == 1)
+		{
+			flag = 1;
 		}
 		else
 		{				
@@ -56,13 +64,15 @@ int main (int argc, char *argv[])
 	if (flag == 1)
 	{
 		printf("This is your argument: %s \n", argv[1]);
+		printArmstrong(argv[1]);
 	}
 	else
 	{
 		printf("Argument is not valid.\n");
 	}
 
-	printf("\n");	
+	
+	printf("\nPrintArray:\n");	
 
 	int array[] = {1, 5, 10, -10};
 	int array1Len = sizeof(array) / sizeof(array[0]);
@@ -72,12 +82,12 @@ int main (int argc, char *argv[])
 	int randomArray[10] = {0};
 	int array2Len = sizeof(randomArray) / sizeof(randomArray[0]);
 
-	printf("\n");
+	printf("\nRandom:\n");
 
 	randArray(randomArray, array2Len);	
 	printIntArray(randomArray, array2Len);
 
-	printf("\n");
+	printf("\n Sorted:\n");
 
 	sortArray(randomArray, array2Len);
 	printIntArray(randomArray, array2Len);
@@ -85,6 +95,36 @@ int main (int argc, char *argv[])
 	printf("\n");
 
 	return 0;
+}
+
+//	3b
+void printArmstrong(char range[])
+{
+	int rangeInt = atoi(range);
+	int cubedSum = 0;
+	char nStr[MAXARRAY] = {'-'};
+	
+	for (int n = 1; n <= rangeInt; n++)
+	{
+		sprintf(nStr, "%d", n);
+		
+		int nStrLen = strlen(nStr);
+		cubedSum = 0;
+		
+		for (int i = 0; i < nStrLen; i++)
+		{
+			int nEleInt = nStr[i] - '0';
+			cubedSum += pow(nEleInt,nStrLen);
+			
+			//printf("n:%d, cubed sum;%d, nStr;x,nEleInt: %d\n",n, cubedSum, nEleInt);
+		}
+
+		if (n == cubedSum)
+		{
+			printf("%d is an armstrong number!\n", n);
+		}
+		
+	}
 }
 
 //	4a
