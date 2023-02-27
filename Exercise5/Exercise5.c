@@ -25,10 +25,14 @@ int main (int argc, char *argv[])
 	printf("Arguments: %d\n", argc);
 	printf("Arg 1 : %s\n", argv[1]);
 */
-	if (arglen <= 7 && argc == 2)
+	if (arglen <= 8 && argc == 2 && argv[1][0] >= 49 && argv[1][0] <= 57)
 	{
-		if (argv[1][0] == 45 || (argv[1][0] >= 48 && argv[1][0] <= 57))
-		{	
+		if (arglen == 8 && strcmp(argv[1],"10000000") != 0)
+		{				
+			flag = 0;
+		}
+		else
+		{				
 			for (i = 1; i < arglen; i++)
 			{
 				if (argv[1][i] >= 48 && argv[1][i] <= 57)
@@ -57,7 +61,9 @@ int main (int argc, char *argv[])
 	{
 		printf("Argument is not valid.\n");
 	}
+
 	printf("\n");	
+
 	int array[] = {1, 5, 10, -10};
 	int array1Len = sizeof(array) / sizeof(array[0]);
 	
@@ -65,12 +71,17 @@ int main (int argc, char *argv[])
 	
 	int randomArray[10] = {0};
 	int array2Len = sizeof(randomArray) / sizeof(randomArray[0]);
+
 	printf("\n");
+
 	randArray(randomArray, array2Len);	
 	printIntArray(randomArray, array2Len);
+
 	printf("\n");
+
 	sortArray(randomArray, array2Len);
 	printIntArray(randomArray, array2Len);
+
 	printf("\n");
 
 	return 0;
