@@ -8,6 +8,7 @@ Description:	Answers to tasks 3 and 4
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <limits.h>
 
 
 void printIntArray(int array[], int lenArray);
@@ -56,7 +57,7 @@ int main (int argc, char *argv[])
 	{
 		printf("Argument is not valid.\n");
 	}
-	
+	printf("\n");	
 	int array[] = {1, 5, 10, -10};
 	int array1Len = sizeof(array) / sizeof(array[0]);
 	
@@ -64,13 +65,13 @@ int main (int argc, char *argv[])
 	
 	int randomArray[10] = {0};
 	int array2Len = sizeof(randomArray) / sizeof(randomArray[0]);
-	
+	printf("\n");
 	randArray(randomArray, array2Len);	
 	printIntArray(randomArray, array2Len);
-	
+	printf("\n");
 	sortArray(randomArray, array2Len);
 	printIntArray(randomArray, array2Len);
-	
+	printf("\n");
 
 	return 0;
 }
@@ -103,7 +104,20 @@ void randArray(int array[], int lenArray)
 //	4c
 void sortArray(int array[], int lenArray)
 {
-	
+	int cache = INT_MIN;
+	for (int i = 0; i < lenArray; i++)
+	{
+		for (int j = i+1; j < lenArray; j++)
+		{
+			
+			if (array[j] > array[i])
+			{
+				cache = array[i];
+				array[i] = array[j];
+				array[j] = cache;
+			}
+		}
+	}
 }
 
 
