@@ -5,9 +5,7 @@ Description:
 				This code takes a user specified amount of floats as an 
 				input into an array and prints the biggest float 
 				inputted.
-
 */
-
 #include <stdio.h>
 
 int main () 
@@ -24,7 +22,8 @@ int main ()
 	{
 		printf("Enter number %d: ", i);
 		scanf("%f", &arr[i]);
-	
+//	The program replaces arr[0] with arr[i]
+//	if arr[i] is bigger than arr[0].
 		if (arr[0] < arr[i])
 		{
 			arr[0] = arr[i];
@@ -32,7 +31,6 @@ int main ()
 	}
 	
 	printf("What am I printing out? %2.f", arr[0]);
-	
 	
 	return 0;
 }

@@ -29,7 +29,7 @@ int main (int argc, char *argv[])
 	printf("Arguments: %d\n", argc);
 	printf("Arg 1 : %s\n", argv[1]);
 */
-	if (arglen <= 8 && argc == 2 && argv[1][0] >= 49 && argv[1][0] <= 57)
+	if (arglen <= 8 && argc == 2 && argv[1][0] >= 48 && argv[1][0] <= 57)
 	{
 		if (arglen == 8 && strcmp(argv[1],"10000000") != 0)
 		{				
@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
 	
 	printf("\nPrintArray:\n");	
 
-	int array[] = {1, 5, 10, -10};
+	int array[] = {1/*, 5, 10, -10*/};
 	int array1Len = sizeof(array) / sizeof(array[0]);
 	
 	printIntArray(array, array1Len);
