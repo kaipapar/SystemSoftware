@@ -24,5 +24,6 @@ int main ()
 	
 	printf("\n int_pointer: %p \t char_pointer: %p \t float_pointer: %p \n", int_pointer, char_pointer, float_pointer);
 
+	printf("\n int_pointer_content: %d \t char_pointer_content: %c \t float_pointer_content: %f \n", *int_pointer, *char_pointer, *float_pointer);
 	return 0;
 }
