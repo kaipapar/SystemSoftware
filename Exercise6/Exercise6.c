@@ -36,18 +36,29 @@ int main()
 	
 	int emptyArray[ARRAYSIZE] = {0};
 	
-	arrayPointer2 = &intArray[0];
+	arrayPointer2 = &emptyArray[0];
 	
 	int *arrayPointer3 = randArray(arrayPointer2, ARRAYSIZE);
-	
+	printf("line 42\n");
 	printArray(arrayPointer3, ARRAYSIZE);	
 	
 // 3c
-	sortArray(arrayPointer3, ARRAYSIZE);
-	printArray(arrayPointer3, ARRAYSIZE);	
-	int *pointerToMemory = checkNumArray(arrayPointer3, ARRAYSIZE);
-	printf(" %p\n ", pointerToMemory);
+	printf("line 46\n");
+	int *arrayPointer4 = sortArray(arrayPointer3, ARRAYSIZE);
 	
+	printArray(arrayPointer4, ARRAYSIZE);	
+	int *pointerToMemory = checkNumArray(arrayPointer4, ARRAYSIZE);
+	printf(" %p\n ", pointerToMemory);
+	if (pointerToMemory == 0)
+	{
+		//printf("Pointer to null: %p", pointerToMemory);
+		printf("Your input is not in the array.\n");
+	}
+	else
+	{
+		//printf("Your input is in the array at memory location: %p", pointerToMemory);
+		printf("Your input is in the array.\n");
+	}
 	
 	return 0;
 }
@@ -56,11 +67,9 @@ int main()
 
 void printArray(int *arrayPointer, int lenArray)
 {
-	int i = 0;
-    for (i = 0; i < lenArray; i++)
+    for (int i = 0; i < lenArray; i++)
     {
-    	
-    	printf("arrayvalue %d\n", *arrayPointer);
+    	printf("array value %d\n", *arrayPointer);
     	arrayPointer++;
     }
 }
@@ -74,6 +83,7 @@ int * randArray(int *arrayPointer, int lenArray)
 	int range = 1000000;
 	int rangeShift = 0;	
 	int *origPointer = arrayPointer;
+	
 	for (int i = 0; i < lenArray; i++)
 	{
 		*arrayPointer = rand() % range + rangeShift;
@@ -88,13 +98,14 @@ int * sortArray(int *arrayPointer, int lenArray)
 {
 	int cache = INT_MIN;
 	int	*origPointer = arrayPointer;
+	
 	for (int i = 0; i < lenArray; i++)
 	{
 		for (int j = i+1; j < lenArray; j++)
 		{
 			if (*(arrayPointer + j) < *(arrayPointer + i))
 			{
-				cache = *(arrayPointer + 1);
+				cache = *(arrayPointer + i); //or pointer+1
 				*(arrayPointer + i) = *(arrayPointer + j);
 				*(arrayPointer + j) = cache;
 			}
@@ -170,12 +181,14 @@ int * checkNumArray(int *arrayPointer, int lenArray)
 				inputPointer = arrayPointer;
 				break;
 			}
+			arrayPointer++;
 		}
 
-
+/*
 		printf("Pointer to null: %p\n", inputPointer);
 
 		printf("The input is in the array at location: %p \n", arrayPointer);
+		*/
 	}
 	return inputPointer;
 }
