@@ -1,7 +1,7 @@
 /* 
- * File:   		Exercise7.c
- * Author:		
- * Description: 
+ * File:   			Exercise7.c
+ * Author:			Karri Korsu
+ * Description: 	Answers to system software exercise 7 tasks 	
  */
 
 #include <stdio.h>

@@ -30,7 +30,7 @@ int main()
 
 void printArray(int *pointer, int size)
 {
-    printf("First value in array %d\n", *pointer);
+    printf(" value in array %d\n", *pointer);
 
     //  Lets move the pointer to the next slot of the array
     pointer++;

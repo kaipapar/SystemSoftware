@@ -186,7 +186,6 @@ int * checkNumArray(int *arrayPointer, int lenArray)
 	//	read user input as char array
 	char* userInput = readUserInputArray();
 	int *inputPointer = NULL;
-	int *origPointer = arrayPointer;
 	
 	if (checkUserInput(userInput) == 1)
 	{
