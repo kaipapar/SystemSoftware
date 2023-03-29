@@ -8,6 +8,7 @@
 #define MATRIX_H
 
 void testMatrix();
+void getLargestSum();
 
 #endif 
 
