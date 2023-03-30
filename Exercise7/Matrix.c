@@ -55,7 +55,7 @@ void getLargestSum()
 	// get the largest sum in the rows
 	for (int i = 1; i <= SIZE; i++)
 	{
-		for (int j = 1; j <= SIZE; i++)
+		for (int j = 1; j <= (SIZE - 5); i++)
 		{
 			possibleSum = twoDimensional[i][j] + twoDimensional[i][j+1] + twoDimensional[i][j+2] + twoDimensional[i][j+3] + twoDimensional[i][j+4];
 			if (possibleSum > rowLargestSum)
@@ -68,7 +68,7 @@ void getLargestSum()
 	// get the largest sum in the columns
 	for (int j = 1; j <= SIZE; j++)
 	{
-		for (int i = 1; i <= SIZE; i++)
+		for (int i = 1; i <= (SIZE - 5); i++)
 		{
 			possibleSum = twoDimensional[i][j] + twoDimensional[i+1][j] + twoDimensional[i+2][j] + twoDimensional[i+3][j] + twoDimensional[i+4][j];
 			if (possibleSum > columnLargestSum)
@@ -78,7 +78,30 @@ void getLargestSum()
 		}
 	}
 	possibleSum = 0;
+	// get the largest sum in NW to SE direction
+	for (int j = 1; j=< (SIZE - 5); j++)
+	{
+		possibleSum = twodimensional[j][j] + twodimensional[j+1][j+1] + twodimensional[j+3][j+3] + twodimensional[j+4][j+4] + twodimensional[j+5][j+5]; 
+		if (possiblSum > NWtoSELargestSum)
+		{
+			NWtoSELargestSum = possibleSum;
+		}
+	}
+	possibleSum = 0;
+	// get the largest sum in SW to NE direction
+	for (int j = SIZE; j => 6; j--)
+	{
+		possibleSum = twodimensional[j][j] + twodimensional[j-1][j-1] + twodimensional[j-3][j-3] + twodimensional[j-4][j-4] + twodimensional[j-5][j-5]; 
+		if (possibleSum > NWtoSELargestSum)
+		{
+			SWtoNELargestSum = possibleSum;
+		}
+	}
 	
+	// compare the sums
+	
+	
+
 	
 }
 
