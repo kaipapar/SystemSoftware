@@ -100,6 +100,14 @@ void getLargestSum()
 	
 	// compare the sums
 	
+	int leftMax = rowLargestSum + columnLargestSum;
+	int rightMax = NWtoSELargestSum + SWtoNELargestSum;
+	// this is not right
+	if (leftMax > rightMax)
+	{
+		print("%d", leftMax);
+	}
+	
 	
 
 	
