@@ -23,6 +23,8 @@ void testMatrix()
 
 void getLargestSum()
 {
+	printf("26");
+	
 	const int twoDimensional[SIZE][SIZE] = {
 	{ 8,  2, 22, 97, 38, 15, 00, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8},
 	{49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48,  4, 56, 62, 00},
@@ -51,67 +53,82 @@ void getLargestSum()
 	int NWtoSELargestSum = 0;
 	int SWtoNELargestSum = 0;
 	int possibleSum = 0;
-	
+	printf("54");
 	// get the largest sum in the rows
-	for (int i = 1; i <= SIZE; i++)
+	for (int i = 1; i < SIZE; i++)
 	{
-		for (int j = 1; j <= (SIZE - 5); i++)
+		for (int j = 1; j < (SIZE - 5); j++)
 		{
 			possibleSum = twoDimensional[i][j] + twoDimensional[i][j+1] + twoDimensional[i][j+2] + twoDimensional[i][j+3] + twoDimensional[i][j+4];
 			if (possibleSum > rowLargestSum)
 			{
 				rowLargestSum = possibleSum;
+				printf("line64");
 			}
 		}
 	}
 	possibleSum = 0;
+	printf("rowLargestSum: %d\n",rowLargestSum);
 	// get the largest sum in the columns
-	for (int j = 1; j <= SIZE; j++)
+	for (int j = 1; j < SIZE; j++)
 	{
-		for (int i = 1; i <= (SIZE - 5); i++)
+		for (int i = 1; i < (SIZE - 5); i++)
 		{
 			possibleSum = twoDimensional[i][j] + twoDimensional[i+1][j] + twoDimensional[i+2][j] + twoDimensional[i+3][j] + twoDimensional[i+4][j];
 			if (possibleSum > columnLargestSum)
 			{
-				rowLargestSum = possibleSum;
+				columnLargestSum = possibleSum;
 			}
 		}
 	}
 	possibleSum = 0;
+	printf("columnLargestSum: %d\n", columnLargestSum);
 	// get the largest sum in NW to SE direction
-	for (int j = 1; j=< (SIZE - 5); j++)
+	for (int k = 0; k <= (SIZE - 5); k+5) // moves the sum in vertical direction, 5 steps at a time
 	{
-		possibleSum = twodimensional[j][j] + twodimensional[j+1][j+1] + twodimensional[j+3][j+3] + twodimensional[j+4][j+4] + twodimensional[j+5][j+5]; 
-		if (possiblSum > NWtoSELargestSum)
+		for (int i = 0; i <= (SIZE - 5); i++) // moves the sum in horizontal direction
 		{
-			NWtoSELargestSum = possibleSum;
+			for (int j = 1; j<= (SIZE - 5); j++)
+			{
+				possibleSum = twoDimensional[i+j][j] + twoDimensional[i+j+1][j+1] + twoDimensional[i+j+3][j+3] + twoDimensional[i+j+4][j+4] + twoDimensional[i+j+5][j+5]; 
+				if (possibleSum > NWtoSELargestSum)
+				{
+					NWtoSELargestSum = possibleSum;
+				}
+			}
+			possibleSum = 0;	
 		}
 	}
-	possibleSum = 0;
+	printf("NWtoSELargestSum: %d \n", NWtoSELargestSum);
 	// get the largest sum in SW to NE direction
-	for (int j = SIZE; j => 6; j--)
+	for (int j = SIZE; j > 5; j--)
 	{
-		possibleSum = twodimensional[j][j] + twodimensional[j-1][j-1] + twodimensional[j-3][j-3] + twodimensional[j-4][j-4] + twodimensional[j-5][j-5]; 
-		if (possibleSum > NWtoSELargestSum)
+		possibleSum = twoDimensional[j][j] + twoDimensional[j-1][j-1] + twoDimensional[j-3][j-3] + twoDimensional[j-4][j-4] + twoDimensional[j-5][j-5]; 
+		if (possibleSum > SWtoNELargestSum)
 		{
 			SWtoNELargestSum = possibleSum;
 		}
 	}
-	
+	printf("SWtoNELargestSum: %d \n", SWtoNELargestSum);
 	// compare the sums
 	
-	int leftMax = rowLargestSum + columnLargestSum;
-	int rightMax = NWtoSELargestSum + SWtoNELargestSum;
-	// this is not right
-	if (leftMax > rightMax)
-	{
-		print("%d", leftMax);
-	}
-	
-	
+	int leftMax = max(rowLargestSum, columnLargestSum);
+	int rightMax = max(NWtoSELargestSum, SWtoNELargestSum);
+	printf("leftmax : %d, rightmax : %d\n", leftMax, rightMax);
+	int maxSum = max(leftMax, rightMax);	
+	printf("The maximum sum of five adjacent elements: %d", maxSum);
 
-	
 }
 
-
+int max(int integer1, int integer2)
+{
+	if (integer1 > integer2)
+	{
+		return integer1;
+	}
+	else
+	{
+		return integer2;
+	}
+}
 

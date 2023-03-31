@@ -9,6 +9,7 @@
 
 void testMatrix();
 void getLargestSum();
+int max(int integer1, int integer2);
 
 #endif 
 

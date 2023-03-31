@@ -13,6 +13,7 @@ int main() {
 	
 	testSieve();
 	testMatrix();
+	getLargestSum();
        
     return 0;
 }
