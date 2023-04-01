@@ -55,11 +55,16 @@ void getLargestSum()
 	int possibleSum = 0;
 	printf("54");
 	// get the largest sum in the rows
-	for (int i = 1; i < SIZE; i++)
+	for (int i = 0; i < (SIZE - 5); i + 5)
 	{
-		for (int j = 1; j < (SIZE - 5); j++)
+		for (int j = 1; j < SIZE; j++)
 		{
-			possibleSum = twoDimensional[i][j] + twoDimensional[i][j+1] + twoDimensional[i][j+2] + twoDimensional[i][j+3] + twoDimensional[i][j+4];
+			possibleSum = twoDimensional[i][j] 
+						+ twoDimensional[i+1][j] 
+						+ twoDimensional[i+2][j] 
+						+ twoDimensional[i+3][j] 
+						+ twoDimensional[i+4][j];
+						
 			if (possibleSum > rowLargestSum)
 			{
 				rowLargestSum = possibleSum;
@@ -69,12 +74,19 @@ void getLargestSum()
 	}
 	possibleSum = 0;
 	printf("rowLargestSum: %d\n",rowLargestSum);
+	
 	// get the largest sum in the columns
-	for (int j = 1; j < SIZE; j++)
+	for (int k = 0; k<= (SIZE - 5); k + 5)
 	{
-		for (int i = 1; i < (SIZE - 5); i++)
+		for (int i = 0; i < (SIZE - 5); i++)
 		{
-			possibleSum = twoDimensional[i][j] + twoDimensional[i+1][j] + twoDimensional[i+2][j] + twoDimensional[i+3][j] + twoDimensional[i+4][j];
+			possibleSum = twoDimensional[i][k] 
+						+ twoDimensional[i][k+1] 
+						+ twoDimensional[i][k+2] 
+						+ twoDimensional[i][k+3] 
+						+ twoDimensional[i][k+4];
+						//+ twoDimensional[i][k+5];
+			
 			if (possibleSum > columnLargestSum)
 			{
 				columnLargestSum = possibleSum;
@@ -83,32 +95,50 @@ void getLargestSum()
 	}
 	possibleSum = 0;
 	printf("columnLargestSum: %d\n", columnLargestSum);
+	
 	// get the largest sum in NW to SE direction
-	for (int k = 0; k <= (SIZE - 5); k+5) // moves the sum in vertical direction, 5 steps at a time
+	for (int k = 0; k <= (SIZE - 5); k + 5) // moves the sum in vertical direction, 5 steps at a time
 	{
-		for (int i = 0; i <= (SIZE - 5); i++) // moves the sum in horizontal direction
+		for (int j = 0; j<= (SIZE - 5); j++) // moves the sum in horizontal direction from left to right
 		{
-			for (int j = 1; j<= (SIZE - 5); j++)
+			possibleSum = twoDimensional[j][k] 		// [0][0]	[1][0]
+						+ twoDimensional[j+1][k+1] 	// [1][1]	[2][1]
+						+ twoDimensional[j+2][k+2] 	// [2][2]	[3][2]
+						+ twoDimensional[j+3][k+3] 	// [3][3]	[4][3]
+						+ twoDimensional[j+4][k+4]; 	// [4][4]	[5][4]
+						//+ twoDimensional[j+5][k+5];	// [5][5]	[6][5]
+						
+			if (possibleSum > NWtoSELargestSum)
 			{
-				possibleSum = twoDimensional[i+j][j] + twoDimensional[i+j+1][j+1] + twoDimensional[i+j+3][j+3] + twoDimensional[i+j+4][j+4] + twoDimensional[i+j+5][j+5]; 
-				if (possibleSum > NWtoSELargestSum)
-				{
-					NWtoSELargestSum = possibleSum;
-				}
+				NWtoSELargestSum = possibleSum;
 			}
-			possibleSum = 0;	
 		}
+		possibleSum = 0;	
 	}
 	printf("NWtoSELargestSum: %d \n", NWtoSELargestSum);
+	
 	// get the largest sum in SW to NE direction
-	for (int j = SIZE; j > 5; j--)
+	for (int k = 0; k <= (SIZE - 5); k + 5)) // moves the sum in vertical direction 5 steps at a time
 	{
-		possibleSum = twoDimensional[j][j] + twoDimensional[j-1][j-1] + twoDimensional[j-3][j-3] + twoDimensional[j-4][j-4] + twoDimensional[j-5][j-5]; 
-		if (possibleSum > SWtoNELargestSum)
+		for (int j = 4; j >= SIZE; j++) // moves the sum in horizontal direction from left to right
 		{
-			SWtoNELargestSum = possibleSum;
+			possibleSum = twoDimensional[j][k] 		// [5][0]	[6][0]
+						+ twoDimensional[j-1][k+1]	// [4][1]	[5][1]
+						+ twoDimensional[j-2][k+2] 	// [3][2]
+						+ twoDimensional[j-3][k+3] 	// [2][3]
+						+ twoDimensional[j-4][k+4]; 	// [1][4]
+						//+ twoDimensional[j-5][k+5];	// [0][5]	[1][5]
+			 
+			if (possibleSum > SWtoNELargestSum)
+			{
+				SWtoNELargestSum = possibleSum;
+			}
 		}
 	}
+	
+
+	
+	
 	printf("SWtoNELargestSum: %d \n", SWtoNELargestSum);
 	// compare the sums
 	
