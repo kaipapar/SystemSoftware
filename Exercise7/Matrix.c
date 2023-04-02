@@ -7,18 +7,9 @@
 #include <stdio.h>
 #include "Matrix.h"
 
-#define SIZE 20 // size of matrix
-
-
 void testMatrix() 
 {
-
 	printf("Hello from Matrix.\n");
-	
-	// get the maximum sum in all directions and compare them. The largest one is the biggest sum
-	
-	//
-
 }
 
 void getLargestSum()

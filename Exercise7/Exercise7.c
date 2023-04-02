@@ -5,11 +5,10 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "Sieve.h"
 #include "Matrix.h"
-
-#define ARRAYSIZE 10 // do macros carry over from other files ?
 
 int main() {
 	
@@ -17,17 +16,24 @@ int main() {
 	testMatrix();
 	
 //	2
-	char* userInput = userInput();
+	char* userInput = readUserInput();
+	int *memoryPointer = NULL; 
+	memoryPointer = (int*)malloc(100 * sizeof(int));
 	
-	
-	if (checkUserInput(userInput) == 1)
+	if (checkUserInput(userInput) == 1 && memoryPointer != NULL)
 	{
-		sieveOfEra(userInput);
+		sieveOfEra(userInput, memoryPointer);
+	}
+	else if (memoryPointer == NULL)
+	{
+		printf("Memory allocation failed. \n");
 	}
 	else 
 	{
 		printf("Enter an integer! \n");
 	}
+	
+	free(memoryPointer);
 
 //	3       
    	getLargestSum();  

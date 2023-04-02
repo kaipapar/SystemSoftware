@@ -5,9 +5,11 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "Sieve.h"
 
-#define ARRAYSIZE 10
+
 
 void testSieve() {
 
@@ -25,19 +27,47 @@ void testSieve() {
 
 }
 
-void sieveOfEra(int posInteger) 
+void sieveOfEra(char* userInput, int *arrayPointer) 
 {
-	if (posInteger > 1)
+	int posInteger = atoi(userInput);
+	if (posInteger > 1 && posInteger < 25000)
 	{
+		// initialize all values to be true
+		for (int i = 2; i < posInteger; i++)
+		{
+			*(arrayPointer + i) = 1;
+		}
+		
+		// check true values for prime-ness
+		for (int j = 2; j*j <= posInteger; j++)
+		{
+			if (*(arrayPointer + j) == 1)
+			{	// multiples of j cannot be prime --> set them to false
+				for (int k = j*j; k <= posInteger; k+=j)
+				{
+					*(arrayPointer + k) = 0;
+				}
+			}
+		}
+		// print primes
+		for (int i = 2; i <= posInteger; i++)
+		{
+			if (*(arrayPointer + i) == 1)
+			{
+				printf("Prime number: %d \n", i);
+			}
+		}
+		
 	
-	
+	}
+	else if (posInteger > 25000)
+	{
+		printf("Please input a smaller number. \n");
 	}
 	else 
 	{
-		printf("Your integer isn't a prime number. \n");
+		printf("There are no prime numbers below your input. \n");
 	}
-
-
 }
 
 
@@ -88,28 +118,6 @@ int checkUserInput(char* userInput)
 	return flag;
 }
 
-int * checkNumArray(int *arrayPointer, int lenArray)
-{
-	//	read user input as char array
-	char* userInput = readUserInput();
-	int *inputPointer = NULL;
-	
-	if (checkUserInput(userInput) == 1)
-	{
-		int checkedInput = atoi(userInput);
-		for (int i = 0; i < lenArray; i++)
-		{
-			if (checkedInput == *arrayPointer)
-			{
-				inputPointer = arrayPointer;
-				break;
-			}
-			arrayPointer++;
-		}
-
-	}
-	return inputPointer; 
-}
 
 
 
