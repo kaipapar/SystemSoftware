@@ -16,7 +16,7 @@ int * randArray(int *arrayPointer, int lenArray);
 
 
 int * sortArray(int *arrayPointer, int lenArray);
-char* readUserInput();
+char* readUserInputArray();
 char* readUserInputThermistor();
 int checkUserInput(char* userInput);
 int * checkNumArray(int *arrayPointer, int lenArray);

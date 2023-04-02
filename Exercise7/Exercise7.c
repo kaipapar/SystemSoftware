@@ -9,12 +9,29 @@
 #include "Sieve.h"
 #include "Matrix.h"
 
+#define ARRAYSIZE 10 // do macros carry over from other files ?
+
 int main() {
 	
 	testSieve();
 	testMatrix();
-	getLargestSum();
-       
+	
+//	2
+	char* userInput = userInput();
+	
+	
+	if (checkUserInput(userInput) == 1)
+	{
+		sieveOfEra(userInput);
+	}
+	else 
+	{
+		printf("Enter an integer! \n");
+	}
+
+//	3       
+   	getLargestSum();  
+     
     return 0;
 }
 
