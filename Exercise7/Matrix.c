@@ -77,11 +77,15 @@ void getLargestSum()
 						+ twoDimensional[y][x+3] 
 						+ twoDimensional[y][x+4];
 						
+
+					
+						
 			if (possibleSum > rowLargestSum)
 			{
 				rowLargestSum = possibleSum;
 			}
 		}
+
 	}
 	possibleSum = 0;
 	printf("rowLargestSum: %d\n",rowLargestSum);
@@ -102,6 +106,7 @@ void getLargestSum()
 				columnLargestSum = possibleSum;
 			}
 		}
+		
 	}
 	possibleSum = 0;
 	printf("columnLargestSum: %d\n", columnLargestSum);
@@ -116,14 +121,16 @@ void getLargestSum()
 						+ twoDimensional[y+2][x+2] 	// [2][2]	[3][2]
 						+ twoDimensional[y+3][x+3] 	// [3][3]	[4][3]
 						+ twoDimensional[y+4][x+4]; 	// [4][4]	[5][4]
-						
+
 			if (possibleSum > NWtoSELargestSum)
 			{
 				NWtoSELargestSum = possibleSum;
 			}
 		}
-		possibleSum = 0;	
+
+			
 	}
+	possibleSum = 0;
 	printf("NWtoSELargestSum: %d \n", NWtoSELargestSum);
 	
 	// get the largest sum in SW to NE direction
@@ -137,7 +144,7 @@ void getLargestSum()
 						+ twoDimensional[y-2][x+2] 	// [3][2]
 						+ twoDimensional[y-3][x+3] 	// [2][3]
 						+ twoDimensional[y-4][x+4]; 	// [1][4]
-			
+									
 			if (possibleSum > SWtoNELargestSum)
 			{
 				SWtoNELargestSum = possibleSum;	

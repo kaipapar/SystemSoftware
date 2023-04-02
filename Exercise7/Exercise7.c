@@ -18,6 +18,7 @@ int main() {
 //	2
 	char* userInput = readUserInput();
 	int *memoryPointer = NULL; 
+	
 	memoryPointer = (int*)malloc(100 * sizeof(int));
 	
 	if (checkUserInput(userInput) == 1 && memoryPointer != NULL)
