@@ -13,11 +13,17 @@ int main()
 {
 	testStudent();
 	printf("Hello!\n");
-	
-	struct Student *ptr = createStructArray();
+
+
+	int size = getNumOfStudents();
+	struct Student *ptr = createStructArray(size);
 	printf("Helloloo\n");
 	
-	printStruct(5, ptr);
+
+	printStruct(size, ptr);
+	askToFillStruct(size, ptr);
+	printStruct(size, ptr);
+	
 
 
 	free(ptr);
