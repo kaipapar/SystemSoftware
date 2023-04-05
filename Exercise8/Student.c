@@ -49,8 +49,10 @@ void printStruct(int size, struct Student *pointer)
 }
 
 /*	Takes input - error checks inputs - assigns inputs to struct	*/
+
 void fillStruct(int size, struct Student *pointer)
 {
+	
 	for (int i = 0; i < size; i++)
 	{
 		printf("Enter student Name: \n");
@@ -84,6 +86,7 @@ void fillStruct(int size, struct Student *pointer)
 }
 
 /*	Asks for user input and returns that input as char array	*/
+
 char* readUserInput()
 {
 	char *array = (char*) malloc(ARRAYSIZE * sizeof(char*));
@@ -95,6 +98,7 @@ char* readUserInput()
 
 /*	Checks whether userInput char array can be interpreted as integer
 	returns 0 == False, 1 == True	*/
+
 int checkUserInputID(char* userInput)
 {	//	if the first element is a dash or a number
 	int flag = 2;
@@ -162,7 +166,6 @@ int checkUserInputName(char* userInput)
 			{
 				flag = 1;
 			}
-			
 		}
 	}
 	else
@@ -221,7 +224,7 @@ int checkUserInputGPA(char* userInput)
 int checkUserInputSize(char* userInput)
 {	//	if the first element is a dash or a number
 	int flag = 2;
-	if (userInput[0] >= 48 && userInput[0] <= 57)
+	if (userInput[0] == 45 || (userInput[0] >= 48 && userInput[0] <= 57))
 	{	
 //	note this wont work on integers with more than 10 digits
 		for (int i = 1; i < ARRAYSIZE; i++)	
@@ -233,8 +236,16 @@ int checkUserInputSize(char* userInput)
 			else 
 			{					
 				// if the element isnt a number 
-				flag = 0;
-				break;
+				// for elements in userInput from i to end of array.
+				if (userInput[i] == 0)
+				{	// if the element is empty: advance.
+					flag = 1;
+				}
+				else if (userInput[i] == 46 || userInput[i] == 45)
+				{	// if its something else than empty the input is invalid.
+					flag = 0;
+					break;
+				}
 			}
 		}
 	}
@@ -247,13 +258,21 @@ int checkUserInputSize(char* userInput)
 
 int getNumOfStudents()
 {
-	int size = -1;
-	while (checkUserInputSize(size) == 0);
+	printf("How many students would you like to add?\n");
+	char *size = readUserInput();
+	int intSize = 0;
+	
+	if (checkUserInputSize(size) == 1)
 	{
-		printf("How many students would you like to have?\n");
-		size = readUserInput();
+		intSize = atoi(size);
+
 	}
-	return size;
+	else 
+	{
+		printf("Invalid input \n");
+	}
+	
+	return intSize;
 }
 
 void askToFillStruct(int size, struct Student *pointer)
@@ -261,30 +280,101 @@ void askToFillStruct(int size, struct Student *pointer)
 	printf("Press 0 if you want to input students yourself or 1 if you want them read from a file:\n");
 	
 	char *input = readUserInput();
-	
-	switch (input)
+	int intInput = atoi(input);
+
+	switch (intInput)
 	{
-		case 48:
-		fillStruct(size, pointer);
+		case 0:
+		fillStructFromFile(size, pointer);
+
+//		fillStruct(size, pointer);
+//		printStruct(size, pointer);
 		break;
 		
-		case 49:
-		fillStructFromFile(size, pointer);
+		case 1:
+//		fillStructFromFile(size, pointer);
+		printStructFile(size, pointer);
 		break;
 		
 		default:
 		printf("Invalid input!\n");
 	}
-
 }
 
 void fillStructFromFile(int size, struct Student *pointer)
 {
-	FILE *filepointer =  NULL;
-	filepointer = fopen("Student.txt", "r");
+	FILE *filePointer =  NULL;
+	filePointer = fopen("Student.txt", "wb+");
 	
-	//fscanf(reads,"%d %d %d %d %lf", &n->id, &n->sign, &n->year, &n->month, &n->amount);
+	if (filePointer == NULL)
+	{
+		fprintf(stderr, "\n Error opening file \n");
+		exit(1);
+		
+	}
+	struct Student *write_struct = malloc(size * sizeof(struct Student));
+  
+	for (int i = 0; i < size; i++)
+	{
+		printf("Enter student Name: \n");
+		char* arrayStudentName = readUserInput();
+		if (checkUserInputName(arrayStudentName) == 1)
+		{
+			strncpy((write_struct + i )->studentName, arrayStudentName, ARRAYSIZE);    
+		}
+		else
+		{
+			printf("Invalid name.\n");
+		}
+		
+		
+		printf("Enter student ID: \n");
+		char* arrayStudentID = readUserInput();
+		if (checkUserInputID(arrayStudentID) == 1)
+		{
+			//write_struct->studentID = atoi(arrayStudentID);
+			(write_struct + i )->studentID = atoi(arrayStudentID);
+		}
+		
+		printf("Enter student GPA: \n");
+		char* arrayStudentGPA = readUserInput();
+		if (checkUserInputGPA(arrayStudentGPA) == 1)
+		{
+			// write_struct->studentGPA = atof(arrayStudentGPA);
+			(write_struct + i )->studentGPA = atof(arrayStudentGPA);
+		}
 	
+	}
+	// writing to file
+   	fwrite(&write_struct, sizeof(write_struct), 1, filePointer);
 	
-	fclose(filepointer);
+    
+    // setting pointer to start of the file
+    rewind(filePointer);
+
+    // close file
+    fclose(filePointer);
+}
+
+void printStructFile(int size, struct Student *pointer)
+{
+	FILE *filePointer = NULL;
+	filePointer = fopen("Student.txt", "rb+");
+	if (filePointer == NULL)
+	{
+		fprintf(stderr, "\n Error opening file\n");
+		exit(1);
+	}
+
+	struct Student read_struct[1] = {0};
+
+	printf("Hello 371 \n");
+	while (fread(&read_struct, sizeof(read_struct), 1, filePointer) == 1)
+	{
+    	printf("Name: %s \t ID: %d \tGPA: %.2f\n", read_struct.studentName,
+           read_struct.studentID, read_struct.studentGPA);	
+		printf("Hello 376\n");
+	}
+	rewind(filePointer);
+	fclose(filePointer);
 }

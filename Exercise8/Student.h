@@ -12,22 +12,24 @@ Description:	Header file for Student.c
 
 void testStudent();
 
+
+
 struct Student * createStructArray(int size);
 
 void printStruct(int size, struct Student *pointer);
 void fillStruct(int size, struct Student *pointer);
-void fillStructFromFile(int size, struct Student *pointer);
-void askToFillStruct(int size, struct Student *pointer);
-
 char* readUserInput();
 
-int checkUserInputName(char* userInput);
 int checkUserInputID(char* userInput);
+
+int checkUserInputName(char* userInput);
 int checkUserInputGPA(char* userInput);
 int checkUserInputSize(char* userInput);
 
 int getNumOfStudents();
-
+void askToFillStruct(int size, struct Student *pointer);
+void fillStructFromFile(int size, struct Student *pointer);
+void printStructFile(int size, struct Student *pointer);
 
 #endif
 

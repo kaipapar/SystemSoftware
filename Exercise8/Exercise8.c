@@ -20,12 +20,17 @@ int main()
 	printf("Helloloo\n");
 	
 
-	printStruct(size, ptr);
-	askToFillStruct(size, ptr);
-	printStruct(size, ptr);
+	//printStruct(size, ptr);
+	printf("line24\n");
 	
-
-
+	askToFillStruct(size, ptr);
+	
+	printf("line26\n");
+	
+	
+	//fillStructFromFile(size, ptr);
+	
+	printStructFile(size, ptr);
 	free(ptr);
 	
 	return 0;
