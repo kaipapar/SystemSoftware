@@ -9,7 +9,7 @@ struct my_struct {
 
 int main() {
     FILE *fp = fopen("filename.bin", "rb");
-    int num_structs;
+    int num_structs = 1;
     
     // read the number of structs from file
     fread(&num_structs, sizeof(int), 1, fp);
@@ -25,6 +25,8 @@ int main() {
         printf("Struct %d: id = %d, name = %s, score = %.2f\n", i+1, arr[i].id, arr[i].name, arr[i].score);
     }
     
+    
+
     // close the file
     fclose(fp);
     

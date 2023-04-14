@@ -289,6 +289,8 @@ void askToFillStruct(int size, struct Student *pointer)
 
 //		fillStruct(size, pointer);
 //		printStruct(size, pointer);
+		printStructFile(size, pointer);
+
 		break;
 		
 		case 1:
@@ -304,7 +306,7 @@ void askToFillStruct(int size, struct Student *pointer)
 void fillStructFromFile(int size, struct Student *pointer)
 {
 	FILE *filePointer =  NULL;
-	filePointer = fopen("Student.txt", "wb+");
+	filePointer = fopen("Student.txt", "wb");
 	
 	if (filePointer == NULL)
 	{
@@ -327,7 +329,6 @@ void fillStructFromFile(int size, struct Student *pointer)
 			printf("Invalid name.\n");
 		}
 		
-		
 		printf("Enter student ID: \n");
 		char* arrayStudentID = readUserInput();
 		if (checkUserInputID(arrayStudentID) == 1)
@@ -346,35 +347,51 @@ void fillStructFromFile(int size, struct Student *pointer)
 	
 	}
 	// writing to file
-   	fwrite(&write_struct, sizeof(write_struct), 1, filePointer);
+   	if (fwrite(&write_struct, sizeof(write_struct), 1, filePointer))
+	{
+		printf("Success\n");
+	}
 	
     
     // setting pointer to start of the file
-    rewind(filePointer);
+    //rewind(filePointer);
 
     // close file
     fclose(filePointer);
+	free(write_struct);
 }
 
 void printStructFile(int size, struct Student *pointer)
 {
 	FILE *filePointer = NULL;
-	filePointer = fopen("Student.txt", "rb+");
+	filePointer = fopen("Student.txt", "rb");
 	if (filePointer == NULL)
 	{
 		fprintf(stderr, "\n Error opening file\n");
 		exit(1);
 	}
 
-	struct Student read_struct[1] = {0};
+
+//	struct Student read_struct[1] = {0};
+	//struct Student *read_struct = malloc(size * sizeof(struct Student));
+	char readBuffer[100] = " ";
 
 	printf("Hello 371 \n");
-	while (fread(&read_struct, sizeof(read_struct), 1, filePointer) == 1)
-	{
-    	printf("Name: %s \t ID: %d \tGPA: %.2f\n", read_struct.studentName,
-           read_struct.studentID, read_struct.studentGPA);	
+	// this doesn't work
+	//int i = 0;
+
+	//fread(&read_struct, sizeof(read_struct), 1, filePointer) == 1
+	// try fgets
+	while (fgets(readBuffer, sizeof(readBuffer),filePointer) != NULL)
+	//while (fread(&read_struct[i], sizeof(struct Student), 1, filePointer) == 1)
+	{/*
+    	printf("Name: %s \t ID: %d \tGPA: %.2f\n", (read_struct + i)->studentName,
+           (read_struct + i)->studentID, (read_struct + i)->studentGPA);	
+		printf("Hello 376\n");*/
+
 		printf("Hello 376\n");
+		printf("Name: ID: GPA: \n %s \n", readBuffer);
+
 	}
-	rewind(filePointer);
 	fclose(filePointer);
 }

@@ -23,12 +23,12 @@ int main()
 	//printStruct(size, ptr);
 	printf("line24\n");
 	
-	askToFillStruct(size, ptr);
+	//askToFillStruct(size, ptr);
 	
 	printf("line26\n");
 	
 	
-	//fillStructFromFile(size, ptr);
+	fillStructFromFile(size, ptr);
 	
 	printStructFile(size, ptr);
 	free(ptr);
