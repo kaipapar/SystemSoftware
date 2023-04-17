@@ -306,7 +306,7 @@ void askToFillStruct(int size, struct Student *pointer)
 void fillStructFromFile(int size, struct Student *pointer)
 {
 	FILE *filePointer =  NULL;
-	filePointer = fopen("Student.txt", "wb");
+	filePointer = fopen("Student.txt", "w");
 	
 	if (filePointer == NULL)
 	{
@@ -364,7 +364,7 @@ void fillStructFromFile(int size, struct Student *pointer)
 void printStructFile(int size, struct Student *pointer)
 {
 	FILE *filePointer = NULL;
-	filePointer = fopen("Student.txt", "rb");
+	filePointer = fopen("Student.txt", "r");
 	if (filePointer == NULL)
 	{
 		fprintf(stderr, "\n Error opening file\n");
@@ -382,9 +382,10 @@ void printStructFile(int size, struct Student *pointer)
 
 	//fread(&read_struct, sizeof(read_struct), 1, filePointer) == 1
 	// try fgets
-	while (fgets(readBuffer, sizeof(readBuffer),filePointer) != NULL)
+	fgets(readBuffer, 100, filePointer);
+	//while (fgets(readBuffer, sizeof(readBuffer),filePointer) != NULL)
 	//while (fread(&read_struct[i], sizeof(struct Student), 1, filePointer) == 1)
-	{/*
+	/*
     	printf("Name: %s \t ID: %d \tGPA: %.2f\n", (read_struct + i)->studentName,
            (read_struct + i)->studentID, (read_struct + i)->studentGPA);	
 		printf("Hello 376\n");*/
@@ -392,6 +393,6 @@ void printStructFile(int size, struct Student *pointer)
 		printf("Hello 376\n");
 		printf("Name: ID: GPA: \n %s \n", readBuffer);
 
-	}
+	
 	fclose(filePointer);
 }
